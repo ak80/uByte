@@ -114,6 +114,23 @@ public class Ubyte {
   }
 
   /**
+   * Return a array of ints, containing four unsigned byte values, each one of the bytes of four byte value
+   *
+   * @param longValue the unsigned four byte value
+   * @return the int array of four bytes
+   */
+  public static int[] getBytesFromQuadByte(long longValue) {
+    int[] intArray = new int[4];
+
+    intArray[0] = (int) ((longValue >>> 3 * BYTE_LENGTH) & BYTE_MASK);
+    intArray[1] = (int) ((longValue >>> 2 * BYTE_LENGTH) & BYTE_MASK);
+    intArray[2] = (int) ((longValue >>> BYTE_LENGTH) & BYTE_MASK);
+    intArray[3] = (int) (longValue & BYTE_MASK);
+
+    return intArray;
+  }
+
+  /**
    * Combines four unsigned bytes into a four byte value stored in a long
    * <p>Uses big endian, and the most significant byte will be the high byte</p>
    *
@@ -331,5 +348,6 @@ public class Ubyte {
     }
     return intArray;
   }
+
 
 }

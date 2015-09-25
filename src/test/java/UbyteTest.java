@@ -26,7 +26,7 @@ public class UbyteTest {
    * Test that a int value is "forced" to be an unsigned byte value
    */
   @Test
-  public void convertToUnsignedByte_toUnsignedByte_various() {
+  public void convertToUnsignedByte_toUnsignedByte() {
     // When Then
     assertThat(Ubyte.toUnsignedByte(0), is(0));
     assertThat(Ubyte.toUnsignedByte(255), is(255));
@@ -42,15 +42,15 @@ public class UbyteTest {
 
     assertThat(Ubyte.toSignedByte(1), is((byte) 1));
     assertThat(Ubyte.toSignedByte(127), is((byte) 127));
-    assertThat(Ubyte.toSignedByte(-128), is((byte) 128));
-    assertThat(Ubyte.toSignedByte(-1), is((byte) 255));
+    assertThat(Ubyte.toSignedByte(128), is((byte) -128));
+    assertThat(Ubyte.toSignedByte(255), is((byte) -1));
   }
 
   /**
    * Test that a unsigned byte stored in an int is converted to signed byte
    */
   @Test
-  public void convertToSignedByte_toUnsignedByte_various() {
+  public void convertToSignedByte_toUnsignedByte() {
     // When Then
     assertThat(Ubyte.toSignedByte(0b00000000), is((byte) 0b00000000));
     assertThat(Ubyte.toSignedByte(0b00000001), is((byte) 0b00000001));
@@ -69,7 +69,7 @@ public class UbyteTest {
    * is in the valid byte range, i.e. from 0 to 255
    */
   @Test
-  public void verifyInt_isUnsignedByte_various() {
+  public void verifyInt_isUnsignedByte() {
     // When Then
     assertThat(Ubyte.isUnsignedByte(0), is(true));
     assertThat(Ubyte.isUnsignedByte(1), is(true));
@@ -82,7 +82,7 @@ public class UbyteTest {
    * Test that the rightmost eight bits of an int value are correctly returned
    */
   @Test
-  public void verifyLowByte_getLowByteFromDoubleByte_various() {
+  public void verifyLowByte_getLowByteFromDoubleByte() {
     // When Then
     assertThat(Ubyte.getLowByteFromDoubleByte(0), is(0));
     assertThat(Ubyte.getLowByteFromDoubleByte(1), is(1));
@@ -96,7 +96,7 @@ public class UbyteTest {
    * Test that the second most bits 9-16 of an int value are correctly returned
    */
   @Test
-  public void verifyHighByte_getHighByteFromDoubleByte_various() {
+  public void verifyHighByte_getHighByteFromDoubleByte() {
     // When Then
     assertThat(Ubyte.getHighByteFromDoubleByte(0), is(0));
     assertThat(Ubyte.getHighByteFromDoubleByte(255), is(0));
@@ -107,10 +107,19 @@ public class UbyteTest {
   }
 
   /**
+   * Test that the correct bytes are returned from a quad byte
+   */
+  @Test
+  public void verifyGetByte_getByteQuadByte() {
+    // When Then
+    assertThat(Ubyte.getBytesFromQuadByte(0x12345678L), is( new int [] { 0x12, 0x34, 0x56, 0x78 } ));
+  }
+
+  /**
    * Test combining two unsigned byte values into a two byte value
    */
   @Test
-  public void verifyGetDoubleByte_combineTwoBytes_various() {
+  public void verifyGetDoubleByte_combineTwoBytes() {
     // When Then
     assertThat(Ubyte.combineTwoBytes(0x12, 0x34), is(0x1234));
   }
@@ -120,7 +129,7 @@ public class UbyteTest {
    * Test combining four unsigned byte values into a four byte value
    */
   @Test
-  public void verifyGetQuadByte_combineFourBytes_various() {
+  public void verifyGetQuadByte_combineFourBytes() {
     // When Then
     assertThat(Ubyte.combineFourBytes(0x12, 0x34, 0x56, 0x78), is(0x12345678L));
   }
@@ -130,7 +139,7 @@ public class UbyteTest {
    * Test formatting an unsigned byte to a hex string
    */
   @Test
-  public void toHexByte_unsignedByte_various() {
+  public void toHexByte_unsignedByte() {
     // When Then
     assertThat(Ubyte.formatByteAsHex(0), is("0x00"));
     assertThat(Ubyte.formatByteAsHex(1), is("0x01"));
@@ -145,7 +154,7 @@ public class UbyteTest {
    * Test formatting an int holding two bytes a hex string
    */
   @Test
-  public void toHexByte_doubleByte_various() {
+  public void toHexByte_doubleByte() {
     // When Then
     assertThat(Ubyte.formatDoubleByteAsHex(0), is("0x0000"));
     assertThat(Ubyte.formatDoubleByteAsHex(1), is("0x0001"));
@@ -162,7 +171,7 @@ public class UbyteTest {
    * Test formatting an int holding four bytes to a hex string
    */
   @Test
-  public void toHexByte_quadByte_various() {
+  public void toHexByte_quadByte() {
     // When Then
     assertThat(Ubyte.formatQuadByteAsHex(0L), is("0x00000000"));
     assertThat(Ubyte.formatQuadByteAsHex(1L), is("0x00000001"));
@@ -176,7 +185,7 @@ public class UbyteTest {
    * Test formatting an array holding unsigned bytes to a hex string
    */
   @Test
-  public void toHexString_byteArray_various() {
+  public void toHexString_byteArray() {
     // When Then
     assertThat(Ubyte.formatUnsignedByteArray(new int[]{0, 1, 255, -1, 256, 1024}), is("{ 0x00, 0x01, 0xff, 0xff, 0x00, 0x00 }"));
     assertThat(Ubyte.formatUnsignedByteArray(new int[]{1}), is("{ 0x01 }"));
@@ -187,7 +196,7 @@ public class UbyteTest {
    * Test the detection of a flag bits, whether it is set or not
    */
   @Test
-  public void flag_bitIsSet_various() {
+  public void flag_bitIsSet() {
     // When Then
     assertThat(Ubyte.bitIsSet(0b10000000, Bits.BIT_7), is(true));
     assertThat(Ubyte.bitIsSet(0b01000000, Bits.BIT_6), is(true));
@@ -212,7 +221,7 @@ public class UbyteTest {
    * Test setting a flag bit based on condition
    */
   @Test
-  public void mask_setFlag_various() {
+  public void mask_setFlag() {
     // When Then
     assertThat(Ubyte.setFlag(0b00000000, Bits.BIT_7, true), is(0b10000000));
     assertThat(Ubyte.setFlag(0b00000000, Bits.BIT_6, true), is(0b01000000));
@@ -238,7 +247,7 @@ public class UbyteTest {
    * Test setting a flag bit
    */
   @Test
-  public void mask_setBit_various() {
+  public void mask_setBit() {
     // When Then
     assertThat(Ubyte.setBit(0b00000000, Bits.BIT_7), is(0b10000000));
     assertThat(Ubyte.setBit(0b00000000, Bits.BIT_6), is(0b01000000));
@@ -254,7 +263,7 @@ public class UbyteTest {
    * Test storing a number bit by bit with given mask
    */
   @Test
-  public void bitNumberStoring_storeUnderMask_various() {
+  public void bitNumberStoring_storeUnderMask() {
     // When Then
     assertThat(Ubyte.storeUnderMask(0b00000000, 0b00000000, 0b0000), is(0b00000000));
     assertThat(Ubyte.storeUnderMask(0b11111111, 0b00000000, 0b0000), is(0b11111111));
@@ -273,7 +282,7 @@ public class UbyteTest {
    * Test getting a number bit by bit with given mask
    */
   @Test
-  public void bitNumberStoring_getWithMask_various() {
+  public void bitNumberStoring_getWithMask() {
     // When Then
     assertThat(Ubyte.getWithMask(0b00000000, 0b00000000), is(0b00000000));
     assertThat(Ubyte.getWithMask(0b11111111, 0b00000000), is(0b00000000));
@@ -298,7 +307,7 @@ public class UbyteTest {
    * is in the valid byte range, i.e. from 0 to 255
    */
   @Test
-  public void verifyIntArray_isUnsignedByteArray_various() {
+  public void verifyIntArray_isUnsignedByteArray() {
     // When Then
     assertThat(Ubyte.isUnsignedByteArray(new int[]{0, 1, 25}), is(true));
     assertThat(Ubyte.isUnsignedByteArray(new int[]{-1, 0}), is(false));
@@ -309,7 +318,7 @@ public class UbyteTest {
    * Test that an array of int value is converted to be an array of signed byte value
    */
   @Test
-  public void convertToSignedByteArray_toSignedByteArray_various() {
+  public void convertToSignedByteArray_toSignedByteArray() {
     // When Then
     assertThat(Ubyte.toSignedByteArray(
         new int[]{0, 1, 127, 255, 256, 257, -1, -128}), is(
@@ -320,7 +329,7 @@ public class UbyteTest {
    * Test that an array of signed byte values is converted to be an array of unsigned byte values stored as ints
    */
   @Test
-  public void convertToUnsignedByteArray_toUnsignedByteArray_various() {
+  public void convertToUnsignedByteArray_toUnsignedByteArray() {
     // When Then
     assertThat(Ubyte.toUnsignedByteArray(new byte[]{0, 1, 127, -1, 0, 1, -1, -128}),
         is(new int[]{0, 1, 127, 255, 0, 1, 255, 128}));

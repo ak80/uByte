@@ -56,6 +56,7 @@ For multi Byte Handling
 * Ubyte.getLowByteFromDoubleByte()
 * Ubyte.getHighByteFromDoubleByte()
 * Ubyte.combineTwoBytes()
+* Ubyte.getBytesFromQuadByte
 * Ubyte.combineFourBytes()
 
 For formatting:

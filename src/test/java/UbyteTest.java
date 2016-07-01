@@ -182,17 +182,6 @@ public class UbyteTest {
   }
 
   /**
-   * Test formatting an array holding unsigned bytes to a hex string
-   */
-  @Test
-  public void toHexString_byteArray() {
-    // When Then
-    assertThat(Ubyte.formatUnsignedByteArray(new int[]{0, 1, 255, -1, 256, 1024}), is("{ 0x00, 0x01, 0xff, 0xff, 0x00, 0x00 }"));
-    assertThat(Ubyte.formatUnsignedByteArray(new int[]{1}), is("{ 0x01 }"));
-    assertThat(Ubyte.formatUnsignedByteArray(new int[]{}), is("{ }"));
-  }
-
-  /**
    * Test the detection of a flag bits, whether it is set or not
    */
   @Test
@@ -335,4 +324,27 @@ public class UbyteTest {
         is(new int[]{0, 1, 127, 255, 0, 1, 255, 128}));
   }
 
+  /**
+   * Test formatting an array holding unsigned bytes to a hex string
+   */
+  @Test
+  public void toHexString_byteArray() {
+    // When Then
+    assertThat(Ubyte.formatUnsignedByteArray(new int[]{0, 1, 255, -1, 256, 1024}), is("{ 0x00, 0x01, 0xff, 0xff, 0x00, 0x00 }"));
+    assertThat(Ubyte.formatUnsignedByteArray(new int[]{1}), is("{ 0x01 }"));
+    assertThat(Ubyte.formatUnsignedByteArray(new int[]{}), is("{ }"));
+  }
+
+  /**
+   * Test parsing a formatted hex string into an array holding unsigned bytes to a hex string
+   */
+  @Test
+  public void fromHexString_byteArray() {
+    // When Then
+    assertThat(Ubyte.parseUnsignedByteArray("{ 0x00, 0x01, 0xff, 0xFF }"), is(new int[]{0, 1, 255, 255}));
+    assertThat(Ubyte.parseUnsignedByteArray("{ 0xff, FF }"), is(new int[]{255, 255}));
+    assertThat(Ubyte.parseUnsignedByteArray("{ 0x00 0x01 }"), is(new int[]{0, 1}));
+    assertThat(Ubyte.parseUnsignedByteArray("{ 0x01 }"), is(new int[]{1}));
+    assertThat(Ubyte.parseUnsignedByteArray("{ }"), is(new int[]{}));
+  }
 }

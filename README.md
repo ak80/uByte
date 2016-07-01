@@ -1,11 +1,14 @@
 # uByte
 Byte Utilities
  
-The Java language does not provide a type for unsigned byte values. It is easier to work with signed int values treating  them as to be unsigned byte. The JVM uses 32 
+The Java language does not provide a type for unsigned byte values. It is easier to work with 
+signed int values and "just pretentd" that they are unsigned byte. The JVM uses 32 
 bit values anyway to store a byte, so no space is saved with using byte.
 
-In addition to conversion method to and from signed byte to an int holding unsigned byte, this class provides formatting of bytes, double bytes or quadruple bytes, and 
-methods for setting  testing bit flags or storing numeric value into a byte at a given position
+In addition to conversion methods to and from signed byte to an int holding unsigned byte, this class provides methods
+to deal with values of multiple bytes, methods for formatting hex numbers, methods for setting and 
+testing bit flags or storing and retrieving numeric values bit by
+bit. 
 
 Use Cases can be found in the [tests](/src/test/java/UbyteTest.java)
 
@@ -20,9 +23,10 @@ Converting a signed byte to an int holding an unsigned byte:
   Ubyte.toUnsignedByte(257); // returns 1
 </pre>
 
-This work well for type byte but also for an int instead of byte. In that case the 24 highest bits in the int are set to zero.
+This works well for type byte but also for a type int instead of byte. In that case the 24 
+highest bits in the int are set to zero.
 
-You can convert back to a a signed byte:
+You can convert back to a signed byte:
 
 <pre>
     Ubyte.toSignedByte(1);    // returns 1;
@@ -45,32 +49,47 @@ You can test if an int already is an unsigned byte, i.e. in the range of 0 - 255
   
   Ubyte.isUnsignedByteArray(new int[]{0, 1, 25}); // returns true;
   Ubyte.isUnsignedByteArray(new int[]{-1, 0});    // returns false;
-  Ubyte.isUnsignedByteArray(new int[]{0, 256}),   // returns false;
+  Ubyte.isUnsignedByteArray(new int[]{0, 256});   // returns false;
 </pre>
 
-## Missing Documentation
+## Multiple byte handling
 
-See the [tests](/src/test/java/UbyteTest.java) or the javadoc!
+You can also treat an int as containing an unsigned two byte value or four byte value. A four byte value must be stored
+in a long as the int is not big enough to hold it unsigned.
 
-For multi Byte Handling
-* Ubyte.getLowByteFromDoubleByte()
-* Ubyte.getHighByteFromDoubleByte()
-* Ubyte.combineTwoBytes()
-* Ubyte.getBytesFromQuadByte
-* Ubyte.combineFourBytes()
+Split multiple bytes:
+<pre>
+    Ubyte.getLowByteFromDoubleByte(0x1234);     // returns 0x34
+    Ubyte.getHighByteFromDoubleByte(0x1234);    // returns 0x12
+    Ubyte.getBytesFromQuadByte(0x12345678L);    // return { 0x12, 0x34, 0x56, 0x78 }
+</pre>
 
-For formatting:
+Combine multiple bytes
+<pre>
+    Ubyte.combineTwoBytes(0x12, 0x34);              // returns 0x1234
+    Ubyte.combineFourBytes(0x12, 0x34, 0x56, 0x78); // returns 0x12345678
+</pre>
+
+## Formatting
+
 * Ubyte.formatByteAsHex()
 * Ubyte.formatDoubleByteAsHex()
 * Ubyte.formatQuadByteAsHex()
-* Ubyte.formatUnsignedByteArray()
 
-For flag handling and masked storing:
+See the [tests](/src/test/java/UbyteTest.java) or the javadoc!
+
+## Array methods
+
+* Ubyte.formatUnsignedByteArray()
+* Ubyte.parseUnsignedByteArray
+
+See the [tests](/src/test/java/UbyteTest.java) or the javadoc!
+
+## Flags and masks
+
 * Ubyte.bitIsSet()
 * Ubyte.setFlag()
 * Ubyte.storeUnderMask()
 * Ubyte.getWithMask()
 
-
-
-
+See the [tests](/src/test/java/UbyteTest.java) or the javadoc!

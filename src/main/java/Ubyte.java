@@ -1,30 +1,36 @@
 /**
  * Provides utilities for working with unsigned byte values
- * <p/>
+ * <p>
  * The Java language does not provide a type for unsigned byte
  * values. It is easier to work with signed int values treating
  * them as to be unsigned byte. The JVM uses 32 bit values anyway
  * to store a byte, so no space is saved with using byte.
- * <p/>
+ * </p>
+ * <p>
  * In addition to conversion method to and from signed byte to
  * an int holding unsigned byte, this class provides formatting
  * of bytes, double bytes or quadruple bytes, and methods
  * for setting  testing bit flags or storing numeric values
  * into a byte at a given position
- * <p/>
+ * </p>
+ * <p>
  * Copyright [2015] [Alexander Koch]
- * <p/>
+ * </p>
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * <p/>
+ * </p>
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p/>
+ * </p>
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ * </p>
  */
 public class Ubyte {
 
@@ -44,8 +50,10 @@ public class Ubyte {
 
   /**
    * Converts the argument to an unsigned byte stored in an int
-   * <p>The argument is converted using only the low-order byte. All the bits in the
-   * other bytes i.e. high-order 24 bits, are zero.</p>
+   * <p>
+   * The argument is converted using only the low-order byte. All the bits in the
+   * other bytes i.e. high-order 24 bits, are zero.
+   * </p>
    *
    * @param intValue the value to convert to an unsigned byte
    * @return the argument converted to an int holding the unsigned byte value
@@ -56,7 +64,9 @@ public class Ubyte {
 
   /**
    * Returns true if the given int would be a valid unsigned byte
-   * <p>The int value is a valid unsigned byte, if it is in the range from 0 to 256</p>
+   * <p>
+   * The int value is a valid unsigned byte, if it is in the range from 0 to 256
+   * </p>
    *
    * @param intValue the int to test
    * @return true if the int is an unsigned byte, otherwise false
@@ -67,7 +77,9 @@ public class Ubyte {
 
   /**
    * Converts the argument to a signed byte
-   * <p>The given int value is a converted to a signed byte</p>
+   * <p>
+   * The given int value is a converted to a signed byte
+   * </p>
    *
    * @param intValue the int value to convert
    * @return a signed byte
@@ -79,8 +91,10 @@ public class Ubyte {
 
   /**
    * Returns the lowest byte, treating the given intValue as a two byte value
-   * <p>An int is returned, holding "low byte", i.e. the least significant byte from a passed int. The int is treated
-   * as a two byte value. The low byte is made up from the rightmost eight bits</p>
+   * <p>
+   * An int is returned, holding "low byte", i.e. the least significant byte from a passed int. The int is treated
+   * as a two byte value. The low byte is made up from the rightmost eight bits
+   * </p>
    *
    * @param intValue the int from which to extract the low byte
    * @return the low byte
@@ -91,8 +105,10 @@ public class Ubyte {
 
   /**
    * Returns the highest byte, treating the given intValue as a two byte value
-   * <p>An int is returned, holding "high byte", i.e. the most significant byte from a passed int. The int is treated
-   * as a two byte value. The high byte is made up from the bits 9-16 counted from the right (and starting with one)</p>
+   * <p>
+   * An int is returned, holding "high byte", i.e. the most significant byte from a passed int. The int is treated
+   * as a two byte value. The high byte is made up from the bits 9-16 counted from the right (and starting with one)
+   * </p>
    *
    * @param intValue the int from which to extract the high byte
    * @return the high byte
@@ -103,7 +119,9 @@ public class Ubyte {
 
   /**
    * Combines two unsigned bytes into a two byte value stored in an int
-   * <p>Uses big endian, and the most significant byte will be the high byte</p>
+   * <p>
+   * Uses big endian, and the most significant byte will be the high byte
+   * </p>
    *
    * @param mostSignificantByte  the high byte
    * @param leastSignificantByte the low byte
@@ -132,7 +150,9 @@ public class Ubyte {
 
   /**
    * Combines four unsigned bytes into a four byte value stored in a long
-   * <p>Uses big endian, and the most significant byte will be the high byte</p>
+   * <p>
+   * Uses big endian, and the most significant byte will be the high byte
+   * </p>
    *
    * @param mostSignificantByte       the high byte
    * @param secondMostSignificantByte the byte after the high byte
@@ -149,9 +169,11 @@ public class Ubyte {
 
   /**
    * Returns a hexadecimal representation of the unsigned byte value
-   * <p>The String is prefixed with 0x and followed by two digits, padded with zero if necessary.
+   * <p>
+   * The String is prefixed with 0x and followed by two digits, padded with zero if necessary.
    * The given int value is a treated as an unsigned byte using only the rightmost byte. All bits in the
-   * other bytes are ignored. Characters are all lowercase</p>
+   * other bytes are ignored. Characters are all lowercase
+   * </p>
    *
    * @param intValue the int holding the unsigned byte
    * @return the formatted hex string
@@ -167,9 +189,11 @@ public class Ubyte {
 
   /**
    * Returns a hexadecimal representation of an int which is assumed to be a two byte value
-   * <p>The String is prefixed with 0x and followed by four digits, padded with zero if necessary.
+   * <p>
+   * The String is prefixed with 0x and followed by four digits, padded with zero if necessary.
    * The given int value is a treated as an unsigned two byte value using only the two rightmost bytes. All bits in the
-   * other bytes are ignored. Characters are all lowercase</p>
+   * other bytes are ignored. Characters are all lowercase
+   * </p>
    *
    * @param intValue the int holding the two unsigned bytes
    * @return the formatted hex string
@@ -180,43 +204,17 @@ public class Ubyte {
 
   /**
    * Returns a hexadecimal representation of a long which is assumed to be a four byte value
-   * <p>The String is prefixed with 0x and followed by eight digits, padded with zero if necessary.
+   * <p>
+   * The String is prefixed with 0x and followed by eight digits, padded with zero if necessary.
    * The given long value is a treated as an unsigned four byte value using only the two rightmost bytes. All bits in the
-   * other bytes are ignored. Characters are all lowercase</p>
+   * other bytes are ignored. Characters are all lowercase
+   * </p>
    *
    * @param longValue the long holding the long unsigned bytes
    * @return the formatted hex string
    */
   public static String formatQuadByteAsHex(long longValue) {
     return formatAsHex(longValue, HEX_PADDING_FOR_QUAD_BYTE);
-  }
-
-  /**
-   * Returns a hexadecimal representation of an array of int, for which each int is assumed to be an unsigned byte value
-   * <p>The conversion of each value is the same as with {@link #formatByteAsHex(int)}, and values are comma separated
-   * and embedded in curly braces</p>
-   *
-   * @param intValueArray the array of ints
-   * @return the formatted hex string
-   */
-  public static String formatUnsignedByteArray(int[] intValueArray) {
-
-    StringBuilder string = new StringBuilder(ARRAY_START);
-
-    for (int intValue : intValueArray) {
-      string.append(formatByteAsHex(intValue));
-      string.append(ARRAY_SEPARATOR);
-    }
-
-    if (intValueArray.length > 0) {
-      string.setLength(string.length() - ARRAY_SEPARATOR.length());
-    } else {
-      string.setLength(string.length() - 1);
-    }
-
-    string.append(ARRAY_END);
-
-    return string.toString();
   }
 
   /**
@@ -304,7 +302,9 @@ public class Ubyte {
 
   /**
    * Returns true if each int int the the given array int would be a valid unsigned byte
-   * <p>Each int value is a valid unsigned byte, if it is in the range from 0 to 256</p>
+   * <p>
+   * Each int value is a valid unsigned byte, if it is in the range from 0 to 256
+   * </p>
    *
    * @param intValueArray the array of int to test
    * @return true if each int is an unsigned byte, otherwise false
@@ -349,5 +349,67 @@ public class Ubyte {
     return intArray;
   }
 
+
+  /**
+   * Returns a hexadecimal representation of an array of int, for which each int is assumed to be an unsigned byte value
+   * <p>
+   * The conversion of each value is the same as with {@link #formatByteAsHex(int)}, and values are comma separated
+   * and embedded in curly braces
+   * </p>
+   *
+   * @param intValueArray the array of ints
+   * @return the formatted hex string
+   */
+  public static String formatUnsignedByteArray(int[] intValueArray) {
+
+    StringBuilder string = new StringBuilder(ARRAY_START);
+
+    for (int intValue : intValueArray) {
+      string.append(formatByteAsHex(intValue));
+      string.append(ARRAY_SEPARATOR);
+    }
+
+    if (intValueArray.length > 0) {
+      string.setLength(string.length() - ARRAY_SEPARATOR.length());
+    } else {
+      string.setLength(string.length() - 1);
+    }
+
+    string.append(ARRAY_END);
+
+    return string.toString();
+  }
+
+  /**
+   * Returns an array of unsigned bytes stored in ints, created from a string representation of an array of unsigned
+   * byte values
+   * <p>
+   * The array must be in the format created with {@link #formatUnsignedByteArray(int[])}: values are unsigned
+   * byte values in hex, prefixed with 0x and followed by two digits, padded if necessary, they are comma separated
+   * with optional white spaces and are optionally embedded in curly braces
+   * </p>
+   * <p>
+   * Note this is the format used by C arrays, e.g. <pre>{ 0x00, 0x01 }</pre>
+   *
+   * @param formattedArray the formated hex string
+   * @return the array of ints
+   */
+  public static int[] parseUnsignedByteArray(String formattedArray) {
+    String withoutBraces = formattedArray.trim().replaceFirst("\\{\\s*", "").replaceFirst("\\s*\\}", "");
+    String[] parts = withoutBraces.split("(\\s*,\\s*)|(\\s+)");
+
+    if (parts.length == 1 && parts[0].matches("\\s*")) {
+      return new int[0];
+    }
+
+    int intArray[] = new int[parts.length];
+    for (int i = 0; i < parts.length; i++) {
+      if (parts[i].equals("")) {
+        continue;
+      }
+      intArray[i] = Integer.parseInt(parts[i].replace(HEX_STRING_PREFIX, ""), 16);
+    }
+    return intArray;
+  }
 
 }

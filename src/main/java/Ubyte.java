@@ -390,7 +390,6 @@ public class Ubyte {
    * byte values in hex, prefixed with 0x and followed by two digits, padded if necessary, they are comma separated
    * with optional white spaces and are optionally embedded in curly braces
    * </p>
-   * <p/>
    * Note this is the format used by C arrays, e.g. <pre>{ 0x00, 0x01 }</pre>
    *
    * @param formattedArray the formated hex string

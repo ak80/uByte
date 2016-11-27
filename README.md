@@ -1,4 +1,6 @@
-# uByte
+# uByte [![Travis master](https://img.shields.io/travis/ak80/uByte/master.svg?maxAge=3600)](https://travis-ci.org/ak80/uByte) [![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0)
+
+
 Byte Utilities
  
 The Java language does not provide a type for unsigned byte values. It is easier to work with 

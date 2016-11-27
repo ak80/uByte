@@ -64,7 +64,7 @@ public final class Ubyte {
    * @param intValue the value to convert to an unsigned byte
    * @return the argument converted to an int holding the unsigned byte value
    */
-  public static int toUnsignedByte(int intValue) {
+  public static int toUnsignedByte(final int intValue) {
     return intValue & BYTE_MASK;
   }
 
@@ -77,7 +77,7 @@ public final class Ubyte {
    * @param intValue the int to test
    * @return true if the int is an unsigned byte, otherwise false
    */
-  public static boolean isUnsignedByte(int intValue) {
+  public static boolean isUnsignedByte(final int intValue) {
     return intValue >= 0x00 && intValue <= 0xff;
   }
 
@@ -90,7 +90,7 @@ public final class Ubyte {
    * @param intValue the int value to convert
    * @return a signed byte
    */
-  public static byte toSignedByte(int intValue) {
+  public static byte toSignedByte(final int intValue) {
     return (byte) ((intValue << 24) >> 24);
   }
 
@@ -105,7 +105,7 @@ public final class Ubyte {
    * @param intValue the int from which to extract the low byte
    * @return the low byte
    */
-  public static int getLowByteFromDoubleByte(int intValue) {
+  public static int getLowByteFromDoubleByte(final int intValue) {
     return intValue & BYTE_MASK;
   }
 
@@ -119,7 +119,7 @@ public final class Ubyte {
    * @param intValue the int from which to extract the high byte
    * @return the high byte
    */
-  public static int getHighByteFromDoubleByte(int intValue) {
+  public static int getHighByteFromDoubleByte(final int intValue) {
     return (intValue >>> BYTE_LENGTH) & BYTE_MASK;
   }
 
@@ -133,7 +133,7 @@ public final class Ubyte {
    * @param leastSignificantByte the low byte
    * @return the two byte value
    */
-  public static int combineTwoBytes(int mostSignificantByte, int leastSignificantByte) {
+  public static int combineTwoBytes(final int mostSignificantByte, final int leastSignificantByte) {
     return (mostSignificantByte << BYTE_LENGTH) + leastSignificantByte;
   }
 
@@ -143,7 +143,7 @@ public final class Ubyte {
    * @param longValue the unsigned four byte value
    * @return the int array of four bytes
    */
-  public static int[] getBytesFromQuadByte(long longValue) {
+  public static int[] getBytesFromQuadByte(final long longValue) {
     int[] intArray = new int[4];
 
     intArray[0] = (int) ((longValue >>> 3 * BYTE_LENGTH) & BYTE_MASK);
@@ -166,7 +166,10 @@ public final class Ubyte {
    * @param leastSignificantByte      the low byte
    * @return the two byte value
    */
-  public static long combineFourBytes(int mostSignificantByte, int secondMostSignificantByte, int thirdMostSignificantByte, int leastSignificantByte) {
+  public static long combineFourBytes(final int mostSignificantByte,
+                                      final int secondMostSignificantByte,
+                                      final int thirdMostSignificantByte,
+                                      final int leastSignificantByte) {
     return (mostSignificantByte << BYTE_LENGTH * 3)
         + (secondMostSignificantByte << BYTE_LENGTH * 2)
         + (thirdMostSignificantByte << BYTE_LENGTH)
@@ -184,11 +187,11 @@ public final class Ubyte {
    * @param intValue the int holding the unsigned byte
    * @return the formatted hex string
    */
-  public static String formatByteAsHex(int intValue) {
+  public static String formatByteAsHex(final int intValue) {
     return formatAsHex(toUnsignedByte(intValue), HEX_PADDING_FOR_BYTE);
   }
 
-  private static String formatAsHex(long value, String padding) {
+  private static String formatAsHex(final long value, final String padding) {
     String hexString = Long.toHexString(value).toLowerCase();
     return HEX_STRING_PREFIX + (padding + hexString).substring(hexString.length());
   }
@@ -204,7 +207,7 @@ public final class Ubyte {
    * @param intValue the int holding the two unsigned bytes
    * @return the formatted hex string
    */
-  public static String formatDoubleByteAsHex(int intValue) {
+  public static String formatDoubleByteAsHex(final int intValue) {
     return formatAsHex(intValue & DOUBLE_BYTE_MASK, HEX_PADDING_FOR_DOUBLE_BYTE);
   }
 
@@ -219,7 +222,7 @@ public final class Ubyte {
    * @param longValue the long holding the long unsigned bytes
    * @return the formatted hex string
    */
-  public static String formatQuadByteAsHex(long longValue) {
+  public static String formatQuadByteAsHex(final long longValue) {
     return formatAsHex(longValue, HEX_PADDING_FOR_QUAD_BYTE);
   }
 
@@ -230,7 +233,7 @@ public final class Ubyte {
    * @param bit      the bit
    * @return true if the bit is set in the given int
    */
-  public static boolean bitIsSet(int intValue, Bits bit) {
+  public static boolean bitIsSet(final int intValue, final Bits bit) {
     return (intValue & bit.getMask()) == bit.getMask();
   }
 
@@ -242,13 +245,12 @@ public final class Ubyte {
    * @param condition if true the bit is set (to one), otherwise unset (to zero)
    * @return the value with the bit set accordingly
    */
-  public static int setFlag(int intValue, Bits bit, boolean condition) {
+  public static int setFlag(final int intValue, Bits bit, final boolean condition) {
     if (condition) {
-      intValue |= bit.getMask();
+      return intValue | bit.getMask();
     } else {
-      intValue &= ~bit.getMask();
+      return intValue & ~bit.getMask();
     }
-    return intValue;
   }
 
   /**
@@ -258,7 +260,7 @@ public final class Ubyte {
    * @param bit      the bit to set
    * @return the value with the bit set
    */
-  public static int setBit(int intValue, Bits bit) {
+  public static int setBit(final int intValue, final Bits bit) {
     return setFlag(intValue, bit, true);
   }
 
@@ -274,7 +276,7 @@ public final class Ubyte {
    * @param source the source to take the bits from
    * @return the target with the source stored under mask
    */
-  public static int storeUnderMask(int target, int mask, int source) {
+  public static int storeUnderMask(int target, final int mask, final int source) {
     int sourcePosition = 0;
     for (int targetPosition = 0; targetPosition < BYTE_LENGTH; targetPosition++) {
       if (bitIsSet(mask, Bits.getBit(targetPosition))) {
@@ -296,7 +298,7 @@ public final class Ubyte {
    * @param mask   the mask to use, to decide which bit in the target to set
    * @return the extracted number from the source
    */
-  public static int getWithMask(int source, int mask) {
+  public static int getWithMask(final int source, final int mask) {
     int target = 0;
     for (int sourcePosition = 0; sourcePosition < BYTE_LENGTH; sourcePosition++) {
       if (bitIsSet(mask, Bits.getBit(sourcePosition))) {
@@ -315,7 +317,7 @@ public final class Ubyte {
    * @param intValueArray the array of int to test
    * @return true if each int is an unsigned byte, otherwise false
    */
-  public static boolean isUnsignedByteArray(int[] intValueArray) {
+  public static boolean isUnsignedByteArray(final int[] intValueArray) {
     for (int intValue : intValueArray) {
       if (!isUnsignedByte(intValue)) {
         return false;
@@ -331,7 +333,7 @@ public final class Ubyte {
    * @param intArray the array to convert
    * @return the byte array with the converted values
    */
-  public static byte[] toSignedByteArray(int[] intArray) {
+  public static byte[] toSignedByteArray(final int[] intArray) {
     byte[] byteArray = new byte[intArray.length];
     for (int i = 0; i < intArray.length; i++) {
       byteArray[i] = toSignedByte(intArray[i]);
@@ -347,7 +349,7 @@ public final class Ubyte {
    * @return the int array with the converted values
    */
 
-  public static int[] toUnsignedByteArray(byte[] byteArray) {
+  public static int[] toUnsignedByteArray(final byte[] byteArray) {
     int[] intArray = new int[byteArray.length];
     for (int i = 0; i < byteArray.length; i++) {
       intArray[i] = toUnsignedByte(byteArray[i]);
@@ -366,7 +368,7 @@ public final class Ubyte {
    * @param intValueArray the array of ints
    * @return the formatted hex string
    */
-  public static String formatUnsignedByteArray(int[] intValueArray) {
+  public static String formatUnsignedByteArray(final int[] intValueArray) {
 
     StringBuilder string = new StringBuilder(ARRAY_START);
 
@@ -399,7 +401,7 @@ public final class Ubyte {
    * @param formattedArray the formated hex string
    * @return the array of ints
    */
-  public static int[] parseUnsignedByteArray(String formattedArray) {
+  public static int[] parseUnsignedByteArray(final String formattedArray) {
     String withoutBraces = formattedArray.trim().replaceFirst("\\{\\s*", "").replaceFirst("\\s*\\}", "");
     String[] parts = withoutBraces.split("(\\s*,+[\\s,]*\\s*)|(\\s+)");
 
@@ -420,7 +422,7 @@ public final class Ubyte {
    * @param array the array to convert
    * @return hey string
    */
-  public static String toIso88591String(int[] array) {
+  public static String toIso88591String(final int[] array) {
     byte[] byteArray = new byte[array.length];
     for (int pos = 0; pos < byteArray.length; pos++) {
       byteArray[pos] = toSignedByte(array[pos]);

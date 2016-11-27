@@ -11,7 +11,7 @@ to deal with values of multiple bytes, methods for formatting hex numbers, metho
 testing bit flags or storing and retrieving numeric values bit by
 bit. 
 
-Use Cases can be found in the [tests](/src/test/java/UbyteTest.java)
+Use Cases can be found in the [tests](/src/test/java/org/ak80/ubyte/UbyteTest.java)
 
 ## Conversion methods
 
@@ -78,14 +78,14 @@ Combine multiple bytes
 * Ubyte.formatQuadByteAsHex()
 * Ubyte.toIso88591String(int[] array)
 
-See the [tests](/src/test/java/UbyteTest.java) or the javadoc!
+See the [tests](/src/test/java/org/ak80/ubyte/UbyteTest.java) or the javadoc!
 
 ## Array methods
 
 * Ubyte.formatUnsignedByteArray()
 * Ubyte.parseUnsignedByteArray
 
-See the [tests](/src/test/java/UbyteTest.java) or the javadoc!
+See the [tests](/src/test/java/org/ak80/ubyte/UbyteTest.java) or the javadoc!
 
 ## Flags and masks
 
@@ -94,4 +94,4 @@ See the [tests](/src/test/java/UbyteTest.java) or the javadoc!
 * Ubyte.storeUnderMask()
 * Ubyte.getWithMask()
 
-See the [tests](/src/test/java/UbyteTest.java) or the javadoc!
+See the [tests](/src/test/java/org/ak80/ubyte/UbyteTest.java) or the javadoc!

@@ -25,6 +25,7 @@ import static org.junit.Assert.assertTrue;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+@SuppressWarnings("PMD.MethodNamingConventions")
 public class UbyteTest {
 
   /**

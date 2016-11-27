@@ -4,7 +4,9 @@ import org.junit.rules.ExpectedException;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.fail;
 
+@SuppressWarnings("PMD.MethodNamingConventions")
 public class BitsTest {
 
   @Rule
@@ -38,12 +40,14 @@ public class BitsTest {
   public void getBit_lessThanZero_throwsException() {
     expectedException.expect(IllegalArgumentException.class);
     Bits.getBit(-1);
+    fail("never reached");
   }
 
   @Test
   public void getBit_greaterThanSeven_throwsException() {
     expectedException.expect(IllegalArgumentException.class);
     Bits.getBit(8);
+    fail("never reached");
   }
 
 

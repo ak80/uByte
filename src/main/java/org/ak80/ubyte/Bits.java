@@ -1,3 +1,5 @@
+package org.ak80.ubyte;
+
 /**
  * Individual bits in a (unsigned) byte, starting with the right most bit as bit zero and the left most as bit 7
  * <p>

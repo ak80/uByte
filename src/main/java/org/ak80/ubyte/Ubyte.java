@@ -1,3 +1,5 @@
+package org.ak80.ubyte;
+
 import java.nio.charset.Charset;
 
 /**
@@ -271,13 +273,14 @@ public final class Ubyte {
    * is set with the bits from source, one after the other from right to left
    * </p>
    *
-   * @param target the value to set the source into
+   * @param template the initial value to set the source into
    * @param mask   the mask to use, to decide which bit in the target to set
    * @param source the source to take the bits from
-   * @return the target with the source stored under mask
+   * @return the resulting value with the source stored under mask into the template
    */
-  public static int storeUnderMask(int target, final int mask, final int source) {
+  public static int storeUnderMask(final int template, final int mask, final int source) {
     int sourcePosition = 0;
+    int target = template;
     for (int targetPosition = 0; targetPosition < BYTE_LENGTH; targetPosition++) {
       if (bitIsSet(mask, Bits.getBit(targetPosition))) {
         target = setFlag(target, Bits.getBit(targetPosition), bitIsSet(source, Bits.getBit(sourcePosition)));

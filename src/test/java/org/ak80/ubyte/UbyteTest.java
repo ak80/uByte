@@ -1,3 +1,7 @@
+package org.ak80.ubyte;
+
+import org.ak80.ubyte.Bits;
+import org.ak80.ubyte.Ubyte;
 import org.junit.Test;
 
 import java.lang.reflect.Constructor;

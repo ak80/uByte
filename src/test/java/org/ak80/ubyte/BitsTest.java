@@ -1,3 +1,6 @@
+package org.ak80.ubyte;
+
+import org.ak80.ubyte.Bits;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;

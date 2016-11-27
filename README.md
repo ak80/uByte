@@ -75,7 +75,7 @@ Combine multiple bytes
 * Ubyte.formatByteAsHex()
 * Ubyte.formatDoubleByteAsHex()
 * Ubyte.formatQuadByteAsHex()
-* Ubyte.formatAsString(int[] array)
+* Ubyte.toIso88591String(int[] array)
 
 See the [tests](/src/test/java/UbyteTest.java) or the javadoc!
 

@@ -420,7 +420,7 @@ public class Ubyte {
    * @param array the array to convert
    * @return hey string
    */
-  public static String toString(int[] array) {
+  public static String toIso88591String(int[] array) {
     byte[] byteArray = new byte[array.length];
     for (int pos = 0; pos < byteArray.length; pos++) {
       byteArray[pos] = toSignedByte(array[pos]);

@@ -360,7 +360,7 @@ public class UbyteTest {
     int[] array=  Ubyte.toUnsignedByteArray(testString.getBytes(Charset.forName("ISO-8859-1")));
 
     // When Then
-    assertThat(Ubyte.toString(array),is(testString));
+    assertThat(Ubyte.toIso88591String(array),is(testString));
   }
 
 }

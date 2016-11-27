@@ -1,5 +1,4 @@
-# uByte [![Travis master](https://img.shields.io/travis/ak80/uByte/master.svg?maxAge=3600)](https://travis-ci.org/ak80/uByte) [![Coveralls](https://img.shields.io/coveralls/ak80/uByte/master.svg?maxAge=3600)](https://coveralls.io/github/ak80/uByte?branch=master) [![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0)
-
+# uByte [![Travis master](https://img.shields.io/travis/ak80/uByte/master.svg)](https://travis-ci.org/ak80/uByte) [![Coverage Status](https://coveralls.io/repos/github/ak80/uByte/badge.svg?branch=master)](https://coveralls.io/github/ak80/uByte?branch=master) [![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0)
 
 Byte Utilities
  

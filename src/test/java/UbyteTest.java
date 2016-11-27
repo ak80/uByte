@@ -1,9 +1,12 @@
 import org.junit.Test;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Modifier;
 import java.nio.charset.Charset;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Tests for class {@link Ubyte}
@@ -346,8 +349,11 @@ public class UbyteTest {
     assertThat(Ubyte.parseUnsignedByteArray("{ 0x00, 0x01, 0xff, 0xFF }"), is(new int[]{0, 1, 255, 255}));
     assertThat(Ubyte.parseUnsignedByteArray("{ 0xff, FF }"), is(new int[]{255, 255}));
     assertThat(Ubyte.parseUnsignedByteArray("{ 0x00 0x01 }"), is(new int[]{0, 1}));
+    assertThat(Ubyte.parseUnsignedByteArray("{ 0x00,,0x01  }"), is(new int[]{0, 1}));
+    assertThat(Ubyte.parseUnsignedByteArray("{ 0x00, ,0x01 }"), is(new int[]{0, 1}));
     assertThat(Ubyte.parseUnsignedByteArray("{ 0x01 }"), is(new int[]{1}));
     assertThat(Ubyte.parseUnsignedByteArray("{ }"), is(new int[]{}));
+    assertThat(Ubyte.parseUnsignedByteArray(""), is(new int[]{}));
   }
 
   /**
@@ -363,4 +369,13 @@ public class UbyteTest {
     assertThat(Ubyte.toIso88591String(array),is(testString));
   }
 
+
+  @Test
+  public void testPrivateConstructor() throws Exception {
+    Constructor constructor = Ubyte.class.getDeclaredConstructor();
+    assertTrue("Constructor is not private", Modifier.isPrivate(constructor.getModifiers()));
+
+    constructor.setAccessible(true);
+    constructor.newInstance();
+  }
 }

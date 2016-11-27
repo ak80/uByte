@@ -62,7 +62,7 @@ Split multiple bytes:
 <pre>
     Ubyte.getLowByteFromDoubleByte(0x1234);     // returns 0x34
     Ubyte.getHighByteFromDoubleByte(0x1234);    // returns 0x12
-    Ubyte.getBytesFromQuadByte(0x12345678L);    // return { 0x12, 0x34, 0x56, 0x78 }
+    Ubyte.getBytesFr````omQuadByte(0x12345678L);    // return { 0x12, 0x34, 0x56, 0x78 }
 </pre>
 
 Combine multiple bytes

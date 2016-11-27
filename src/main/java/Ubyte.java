@@ -34,7 +34,7 @@ import java.nio.charset.Charset;
  * limitations under the License.
  * </p>
  */
-public class Ubyte {
+public final class Ubyte {
 
   private static final int BYTE_MASK = 0x000000ff;
   private static final int DOUBLE_BYTE_MASK = 0x0000ffff;
@@ -49,6 +49,10 @@ public class Ubyte {
   private static final String ARRAY_START = "{ ";
   private static final String ARRAY_END = " }";
   private static final String ARRAY_SEPARATOR = ", ";
+
+  private Ubyte() {
+    // hide
+  }
 
   /**
    * Converts the argument to an unsigned byte stored in an int
@@ -397,7 +401,7 @@ public class Ubyte {
    */
   public static int[] parseUnsignedByteArray(String formattedArray) {
     String withoutBraces = formattedArray.trim().replaceFirst("\\{\\s*", "").replaceFirst("\\s*\\}", "");
-    String[] parts = withoutBraces.split("(\\s*,\\s*)|(\\s+)");
+    String[] parts = withoutBraces.split("(\\s*,+[\\s,]*\\s*)|(\\s+)");
 
     if (parts.length == 1 && parts[0].matches("\\s*")) {
       return new int[0];
@@ -405,9 +409,6 @@ public class Ubyte {
 
     int intArray[] = new int[parts.length];
     for (int i = 0; i < parts.length; i++) {
-      if (parts[i].equals("")) {
-        continue;
-      }
       intArray[i] = Integer.parseInt(parts[i].replace(HEX_STRING_PREFIX, ""), 16);
     }
     return intArray;

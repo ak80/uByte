@@ -1,5 +1,7 @@
 import org.junit.Test;
 
+import java.nio.charset.Charset;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -347,4 +349,18 @@ public class UbyteTest {
     assertThat(Ubyte.parseUnsignedByteArray("{ 0x01 }"), is(new int[]{1}));
     assertThat(Ubyte.parseUnsignedByteArray("{ }"), is(new int[]{}));
   }
+
+  /**
+   * Test parsing a formatted hex string into an array holding unsigned bytes to a hex string
+   */
+  @Test
+  public void toString_byteArray() {
+    // Given
+    String testString = "AaBbCc1234567890$!+-_%&";
+    int[] array=  Ubyte.toUnsignedByteArray(testString.getBytes(Charset.forName("ISO-8859-1")));
+
+    // When Then
+    assertThat(Ubyte.toString(array),is(testString));
+  }
+
 }

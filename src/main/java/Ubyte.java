@@ -1,3 +1,5 @@
+import java.nio.charset.Charset;
+
 /**
  * Provides utilities for working with unsigned byte values
  * <p>
@@ -388,7 +390,7 @@ public class Ubyte {
    * byte values in hex, prefixed with 0x and followed by two digits, padded if necessary, they are comma separated
    * with optional white spaces and are optionally embedded in curly braces
    * </p>
-   * <p>
+   * <p/>
    * Note this is the format used by C arrays, e.g. <pre>{ 0x00, 0x01 }</pre>
    *
    * @param formattedArray the formated hex string
@@ -410,6 +412,20 @@ public class Ubyte {
       intArray[i] = Integer.parseInt(parts[i].replace(HEX_STRING_PREFIX, ""), 16);
     }
     return intArray;
+  }
+
+  /**
+   * Convert the array of unsigned bytes to a string in "ISO-8859-1" encoding
+   *
+   * @param array the array to convert
+   * @return hey string
+   */
+  public static String toString(int[] array) {
+    byte[] byteArray = new byte[array.length];
+    for (int pos = 0; pos < byteArray.length; pos++) {
+      byteArray[pos] = toSignedByte(array[pos]);
+    }
+    return new String(byteArray, Charset.forName("ISO-8859-1"));
   }
 
 }

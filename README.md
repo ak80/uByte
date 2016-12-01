@@ -11,7 +11,7 @@ to deal with values of multiple bytes, methods for formatting hex numbers, metho
 testing bit flags or storing and retrieving numeric values bit by
 bit. 
 
-Use Cases can be found in the [tests](/src/test/java/org/ak80/ubyte/org.ak80.ubyte.UbyteTest.java)
+Use Cases can be found in the [tests](/src/test/java/org/ak80/ubyte/UbyteTest.java)
 
 ## Conversion methods
 
@@ -62,7 +62,7 @@ Split multiple bytes:
 <pre>
     org.ak80.ubyte.Ubyte.getLowByteFromDoubleByte(0x1234);     // returns 0x34
     org.ak80.ubyte.Ubyte.getHighByteFromDoubleByte(0x1234);    // returns 0x12
-    org.ak80.ubyte.Ubyte.getBytesFr````omQuadByte(0x12345678L);    // return { 0x12, 0x34, 0x56, 0x78 }
+    org.ak80.ubyte.Ubyte.getBytesFromQuadByte(0x12345678L);    // return { 0x12, 0x34, 0x56, 0x78 }
 </pre>
 
 Combine multiple bytes
@@ -78,7 +78,7 @@ Combine multiple bytes
 * org.ak80.ubyte.Ubyte.formatQuadByteAsHex()
 * org.ak80.ubyte.Ubyte.toIso88591String(int[] array)
 
-See the [tests](/src/test/java/org/ak80/ubyte/org.ak80.ubyte.UbyteTest.java) or the javadoc!
+See the [tests](/src/test/java/org/ak80/ubyte/UbyteTest.java) or the javadoc!
 
 ## Array methods
 
@@ -94,4 +94,4 @@ See the [tests](/src/test/java/org/ak80/ubyte/org.ak80.ubyte.UbyteTest.java) or 
 * org.ak80.ubyte.Ubyte.storeUnderMask()
 * org.ak80.ubyte.Ubyte.getWithMask()
 
-See the [tests](/src/test/java/org/ak80/ubyte/org.ak80.ubyte.UbyteTest.java) or the javadoc!
+See the [tests](/src/test/java/org/ak80/ubyte/UbyteTest.java) or the javadoc!
